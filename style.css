@@ -1,0 +1,167 @@
+/* Commento C1 - Reset Base e Font */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #000;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+}
+
+/* NUOVO: Contenitore Gioco (griglia sopra, tastiera sotto) */
+#game-container {
+    display: flex;
+    flex-direction: column !important; /* forza la disposizione in colonna */
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Commento C2 - Stili della Lobby */
+#lobby-container {
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#room-code-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+#create-room-btn, #join-room-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Commento C3 - Stili della Griglia */
+#grid-container {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Spazio tra le righe */
+    margin: 20px 0;
+}
+
+.grid-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.box {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff; /* bordo bianco */
+    color: #fff;            /* testo bianco per digitato */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.5s, transform 0.2s;
+    background-color: #000; /* sfondo nero di base, ma sarà sovrascritto dalle classi feedback */
+}
+
+
+/* Commento C4 - Feedback Colori */
+.correct-position { 
+    background-color: #6aaa64; 
+    color: white;
+    border-color: #6aaa64;
+}
+
+.wrong-position { 
+    background-color: #c9b458;
+    color: white;
+    border-color: #c9b458;
+}
+
+.not-in-word { 
+    background-color: #787c7e;
+    color: white;
+    border-color: #787c7e;
+}
+
+.current-row .box {
+    border-color: #333;
+}
+
+/* Commento C5 - Tastiera sotto la griglia */
+#keyboard-container {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    padding-bottom: 20px;
+    margin-top: 10px;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 6px;
+}
+
+.key {
+    background-color: #444; /* tasto scuro */
+    color: #fff;            /* testo bianco */
+    height: 58px;
+    min-width: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 8px;
+    transition: background-color 0.2s;
+}
+
+.key:active {
+    background-color: #999;
+}
+
+/* Tasti speciali */
+.wide-key {
+    flex-grow: 1.5;
+}
+
+/* Feedback colori sulla tastiera aggiornati */
+.key.correct-position {
+    background-color: #ffd700 !important; /* giallo se la lettera esiste */
+    color: black; /* testo nero */
+}
+
+.key.not-in-word {
+    background-color: #000 !important; /* nero se lettera non valida */
+    color: white; /* testo bianco */
+}
+
+.key.wrong-position {
+    background-color: #444 !important; /* neutro/scuro se necessario */
+    color: white;
+}
+
+/* Fix compatibilità CodePen */
+#game-container > div {
+    width: 100%;
+}

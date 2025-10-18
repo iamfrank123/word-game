@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Guess The Word (Wordle)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="lobby-container">
+        <h2>Gioca a Guess The Word Multiplayer</h2>
+        <button id="create-room-btn">Crea Stanza</button>
+        <p>Oppure</p>
+        <input type="text" id="room-code-input" placeholder="Codice Stanza" maxlength="4">
+        <button id="join-room-btn">Unisciti</button>
+        <p id="lobby-message"></p>
+    </div>
+
+    <div id="game-container" style="display: none;">
+        <div id="game-status">
+            <h3 id="player-turn">Attendendo il tuo avversario...</h3>
+            <p id="game-message"></p>
+        </div>
+
+        <div id="grid-container">
+            </div>
+        
+        <div id="keyboard-container">
+            </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
