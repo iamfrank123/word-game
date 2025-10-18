@@ -9,25 +9,31 @@
 <body>
 
     <div id="lobby-container">
-        <h2>Gioca a Guess The Word Multiplayer</h2>
-        <button id="create-room-btn">Crea Stanza</button>
-        <p>Oppure</p>
-        <input type="text" id="room-code-input" placeholder="Codice Stanza" maxlength="4">
-        <button id="join-room-btn">Unisciti</button>
+        <h2>Play Guess The Word Multiplayer</h2>
+
+        <!-- Dropdown lingua -->
+        <label for="languageSelect">Select the language:</label>
+        <select id="languageSelect">
+            <option value="it">Italian</option>
+            <option value="en">English</option>
+        </select>
+
+        <button id="create-room-btn">Create room</button>
+        <p>or</p>
+        <input type="text" id="room-code-input" placeholder="Room Code" maxlength="4">
+        <button id="join-room-btn">Join</button>
         <p id="lobby-message"></p>
     </div>
 
     <div id="game-container" style="display: none;">
         <div id="game-status">
-            <h3 id="player-turn">Attendendo il tuo avversario...</h3>
+            <h3 id="player-turn">Waiting for your opponent...</h3>
             <p id="game-message"></p>
         </div>
 
-        <div id="grid-container">
-            </div>
+        <div id="grid-container"></div>
         
-        <div id="keyboard-container">
-            </div>
+        <div id="keyboard-container"></div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
