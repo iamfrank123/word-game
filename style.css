@@ -31,12 +31,13 @@ body {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-#room-code-input {
+#room-code-input, #languageSelect {
     padding: 10px;
-    margin-right: 10px;
+    margin: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     text-transform: uppercase;
+    font-size: 1em;
 }
 
 #create-room-btn, #join-room-btn {
@@ -47,6 +48,12 @@ body {
     color: white;
     border: none;
     border-radius: 4px;
+}
+
+/* Label lingua */
+#lobby-container label {
+    margin-right: 10px;
+    font-weight: bold;
 }
 
 /* Commento C3 - Stili della Griglia */
@@ -67,8 +74,8 @@ body {
 .box {
     width: 60px;
     height: 60px;
-    border: 2px solid #fff; /* bordo bianco */
-    color: #fff;            /* testo bianco per digitato */
+    border: 2px solid #fff;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,9 +83,8 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     transition: background-color 0.5s, transform 0.2s;
-    background-color: #000; /* sfondo nero di base, ma sarà sovrascritto dalle classi feedback */
+    background-color: #000;
 }
-
 
 /* Commento C4 - Feedback Colori */
 .correct-position { 
@@ -121,8 +127,8 @@ body {
 }
 
 .key {
-    background-color: #444; /* tasto scuro */
-    color: #fff;            /* testo bianco */
+    background-color: #444;
+    color: #fff;
     height: 58px;
     min-width: 43px;
     display: flex;
@@ -147,17 +153,17 @@ body {
 
 /* Feedback colori sulla tastiera aggiornati */
 .key.correct-position {
-    background-color: #ffd700 !important; /* giallo se la lettera esiste */
-    color: black; /* testo nero */
+    background-color: #ffd700 !important;
+    color: black;
 }
 
 .key.not-in-word {
-    background-color: #000 !important; /* nero se lettera non valida */
-    color: white; /* testo bianco */
+    background-color: #000 !important;
+    color: white;
 }
 
 .key.wrong-position {
-    background-color: #444 !important; /* neutro/scuro se necessario */
+    background-color: #444 !important;
     color: white;
 }
 
