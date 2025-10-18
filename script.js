@@ -10,6 +10,7 @@ const gridContainer = document.getElementById('grid-container');
 const playerTurnH3 = document.getElementById('player-turn');
 const gameMessageP = document.getElementById('game-message');
 const keyboardContainer = document.getElementById('keyboard-container');
+const languageSelect = document.getElementById('languageSelect'); // NUOVO: select lingua
 
 // ------------------ SUONI ------------------
 const soundWin = new Audio('audio/audio_win.mp3');
@@ -89,7 +90,7 @@ function updateGridState(gridData) {
 
 function handleKeyInput(key) {
     if (!isMyTurn || currentRowIndex >= totalRows) return;
-    if (playerTurnH3.textContent.includes("Attendendo il server...")) return;
+    if (playerTurnH3.textContent.includes("Waiting for the server...")) return;
 
     const char = key.toUpperCase();
 
@@ -153,11 +154,11 @@ generateKeyboard();
 
 function submitCurrentGuess() {
     if (currentGuess.length === WORD_LENGTH) {
-        gameMessageP.textContent = 'Verifica in corso...';
-        playerTurnH3.textContent = "Attendendo il server...";
+        gameMessageP.textContent = 'Verifying...';
+        playerTurnH3.textContent = "Waiting for the server...";
         socket.emit('submitWord', currentGuess);
     } else {
-        gameMessageP.textContent = 'La parola deve avere 5 lettere!';
+        gameMessageP.textContent = `The word should be ${WORD_LENGTH} letters!`;
     }
 }
 
@@ -171,15 +172,13 @@ function updateKeyboardFeedback(word, feedback) {
 
         if (newClass === 'not-in-word') {
             keyElement.classList.remove('correct-position', 'wrong-position');
-            keyElement.classList.add('not-in-word'); // lettere non presenti → nero
+            keyElement.classList.add('not-in-word');
         } else {
-            // lettere presenti → gialle, sia corrette che fuori posizione
             keyElement.classList.remove('not-in-word');
-            keyElement.classList.add('correct-position'); // usa correct-position per giallo
+            keyElement.classList.add('correct-position');
         }
     });
 }
-
 
 // ------------------ REMATCH ------------------
 
@@ -187,14 +186,14 @@ function createRematchButton() {
     if (rematchBtn) rematchBtn.remove();
 
     rematchBtn = document.createElement('button');
-    rematchBtn.textContent = 'Gioca Ancora (Rematch)';
+    rematchBtn.textContent = 'Play again (Rematch)';
     rematchBtn.style.padding = '10px 20px';
     rematchBtn.style.marginTop = '15px';
     rematchBtn.style.cursor = 'pointer';
 
     rematchBtn.addEventListener('click', () => {
         socket.emit('requestRematch');
-        rematchBtn.textContent = 'Richiesta inviata... Attendere';
+        rematchBtn.textContent = 'Request sent... Please wait';
         rematchBtn.disabled = true;
     });
 
@@ -213,17 +212,19 @@ function resetGameInterface() {
     totalRows = 6;
     keyStates = {};
 
-    playerTurnH3.textContent = 'Attendendo il tuo avversario...';
-    gameMessageP.textContent = 'Nuova partita iniziata!';
+    playerTurnH3.textContent = 'Waiting for your opponent...';
+    gameMessageP.textContent = 'New game started!';
     generateGrid(6);
     generateKeyboard();
 }
 
 // ------------------ SOCKET.IO ------------------
 
+// CREA STANZA CON LINGUA
 createRoomBtn.addEventListener('click', () => {
-    socket.emit('createRoom');
-    lobbyMessage.textContent = 'Creazione stanza...';
+    const selectedLanguage = languageSelect.value; // "it" o "en"
+    socket.emit('createRoom', selectedLanguage);
+    lobbyMessage.textContent = 'Creating a room...';
     createRoomBtn.disabled = true;
     joinRoomBtn.disabled = true;
 });
@@ -236,13 +237,14 @@ joinRoomBtn.addEventListener('click', () => {
         createRoomBtn.disabled = true;
         joinRoomBtn.disabled = true;
     } else {
-        lobbyMessage.textContent = 'Inserisci un codice stanza valido di 4 lettere.';
+        lobbyMessage.textContent = 'Enter a valid 4-letter room code.';
     }
 });
 
 socket.on('roomCreated', (code) => {
     currentRoomCode = code;
-    lobbyMessage.textContent = `Stanza creata! Codice: ${code}. Condividi questo codice. In attesa dell'avversario...`;
+    const langText = languageSelect.value === "en" ? "English" : "Italiano";
+    lobbyMessage.textContent = `Room created! code: ${code} (${langText}). Waiting for your opponent...`;
 });
 
 socket.on('lobbyMessage', (msg) => {
@@ -263,7 +265,7 @@ socket.on('startGame', (roomCode, players) => {
     currentRoomCode = roomCode;
     lobbyContainer.style.display = 'none';
     gameContainer.style.display = 'flex';
-    gameMessageP.textContent = 'Partita iniziata!';
+    gameMessageP.textContent = 'Game started!';
     resetGameInterface();
 });
 
@@ -272,9 +274,9 @@ socket.on('updateTurnStatus', (status) => {
     playerTurnH3.textContent = status.message;
 
     if (isMyTurn) {
-        gameMessageP.textContent = "Tocca a te! Digita la tua parola e premi INVIO.";
+        gameMessageP.textContent = "It's your turn! Insert your word.";
     } else {
-        gameMessageP.textContent = "Attendendo il turno dell'avversario.";
+        gameMessageP.textContent = "Waiting for your opponent's turn.";
         currentGuess = '';
         const rowBoxes = document.getElementById(`row-${currentRowIndex}`)?.querySelectorAll('.box');
         if (rowBoxes) rowBoxes.forEach(box => box.textContent = '');
@@ -289,7 +291,7 @@ socket.on('updateGameState', (state) => {
     totalRows = state.maxRows;
 
     while (gridContainer.children.length < totalRows) {
-        addNewRow(); // aggiunge una riga alla volta
+        addNewRow();
     }
 
     updateGridState(state.grid);
@@ -299,41 +301,39 @@ socket.on('updateGameState', (state) => {
 
 socket.on('gameOver', (data) => {
     isMyTurn = false;
-    playerTurnH3.textContent = `Partita Terminata! VINCITORE: ${data.winner === socket.id ? "TU" : "AVVERSARIO"}`;
-    gameMessageP.textContent = `La parola segreta era: ${data.secretWord}`;
+    playerTurnH3.textContent = `Game ended! WINNER: ${data.winner === socket.id ? "TU" : "AVVERSARIO"}`;
+    gameMessageP.textContent = `The secret word was: ${data.secretWord}`;
     currentGuess = '';
 
-    // Suoni
     if (data.winner === socket.id) {
-        soundWin.play();        // se ho vinto
+        soundWin.play();
     } else {
-        soundGameOver.play();   // se ho perso
+        soundGameOver.play();
     }
 
     createRematchButton();
 });
 
-
 socket.on('rematchRequested', (msg) => {
     gameMessageP.textContent = msg;
     createRematchButton();
-    rematchBtn.textContent = 'Accetta Rivincita!';
+    rematchBtn.textContent = 'Accept rematch!';
 });
 
 socket.on('rematchStart', () => {
     resetGameInterface();
-    gameMessageP.textContent = 'Rivincita accettata! Il gioco riparte.';
+    gameMessageP.textContent = 'Rematch accepted! The game starts.';
 });
 
 socket.on('opponentDisconnected', (message) => {
     isMyTurn = false;
-    playerTurnH3.textContent = 'Partita Terminata';
+    playerTurnH3.textContent = 'Game ended';
     gameMessageP.textContent = message;
     if (rematchBtn) rematchBtn.remove();
-    alert(message + ' Ricarica la pagina per ricominciare.');
+    alert(message + ' Refresh the page to restart.');
 });
 
 socket.on('gameError', (msg) => {
     gameMessageP.textContent = `ERRORE GIOCO: ${msg}`;
-    if (isMyTurn) playerTurnH3.textContent = "Tocca a te!";
+    if (isMyTurn) playerTurnH3.textContent = "Your turn!";
 });
