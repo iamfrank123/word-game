@@ -1063,11 +1063,18 @@ io.on('connection', (socket) => {
         if (socket.id !== room.currentTurnSocket) return socket.emit('gameError', "Non è il tuo turno!");
         if (upperWord.length !== WORD_LENGTH) return socket.emit('gameError', `La parola deve essere di ${WORD_LENGTH} lettere.`);
 
-        const validWords = getWordList(room.language);
-        if (!validWords.includes(upperWord)) {
-            socket.emit('gameError', 'Not a valid word!');
-            return;
-        }
+        function isValidWord(word, language) {
+    const upperWord = word.toUpperCase();
+    if (language === "it") return VALID_WORDS_IT.includes(upperWord);
+    if (language === "en") return VALID_WORDS_EN.includes(upperWord);
+    return false;
+}
+
+if (!isValidWord(upperWord, room.language)) {
+    socket.emit('gameError', 'Not a valid word!');
+    return;
+}
+
 
         const feedback = getFeedback(upperWord, room.secretWord);
         room.grid.push({ word: upperWord, feedback: feedback });
