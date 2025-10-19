@@ -1107,17 +1107,16 @@ io.on('connection', (socket) => {
         if (upperWord.length !== WORD_LENGTH) return socket.emit('gameError', `La parola deve essere di ${WORD_LENGTH} lettere.`);
 
         function isValidWord(word, language) {
-    const upperWord = word.toUpperCase();
-    if (language === "it") return VALID_WORDS_IT.includes(upperWord);
-    if (language === "en") return VALID_WORDS_EN.includes(upperWord);
-    return false;
-}
+            const upperWord = word.toUpperCase();
+            if (language === "it") return VALID_WORDS_IT.includes(upperWord);
+            if (language === "en") return VALID_WORDS_EN.includes(upperWord);
+            return false;
+        }
 
-if (!isValidWord(upperWord, room.language)) {
-    socket.emit('gameError', 'Not a valid word!');
-    return;
-}
-
+        if (!isValidWord(upperWord, room.language)) {
+            socket.emit('gameError', 'Not a valid word!');
+            return;
+        }
 
         const feedback = getFeedback(upperWord, room.secretWord);
         room.grid.push({ word: upperWord, feedback: feedback });
@@ -1214,9 +1213,36 @@ if (!isValidWord(upperWord, room.language)) {
             }
         }
     });
+
+    // ---------------- PASSAGGIO TURNO ----------------
+    socket.on('passTurn', () => {
+        const roomCode = socket.roomId;
+        const room = rooms[roomCode];
+        if (!room || room.players.length !== MAX_PLAYERS) return;
+
+        // Cambia turno al prossimo giocatore
+        room.currentPlayerIndex = (room.currentPlayerIndex + 1) % MAX_PLAYERS;
+        room.currentTurnSocket = room.players[room.currentPlayerIndex];
+
+        const nextPlayerId = room.currentTurnSocket;
+        const opponentPlayerId = room.players.find(id => id !== nextPlayerId);
+
+        io.sockets.sockets.get(nextPlayerId)?.emit('updateTurnStatus', {
+            isTurn: true,
+            message: "Tocca a te!"
+        });
+
+        if (opponentPlayerId) {
+            io.sockets.sockets.get(opponentPlayerId)?.emit('updateTurnStatus', {
+                isTurn: false,
+                message: "Tocca all'avversario."
+            });
+        }
+    });
 });
 
 server.listen(PORT, () => {
     console.log(`Server Socket.io in ascolto sulla porta ${PORT}`);
     console.log(`Accessibile su http://localhost:${PORT}`);
 });
+
