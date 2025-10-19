@@ -135,7 +135,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    font-size: 0.9em;       /* testo leggermente più grande */
+    font-size: 1.4em;       /* testo leggermente più grande */
     font-weight: bold;
     cursor: pointer;
     padding: 0 6px;          /* padding più stretto */
@@ -236,3 +236,4 @@ body {
         padding: 0 4px;
     }
 }
+
