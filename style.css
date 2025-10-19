@@ -135,7 +135,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    font-size: 0.75em;       /* testo leggermente più piccolo */
+    font-size: 0.9em;       /* testo leggermente più grande */
     font-weight: bold;
     cursor: pointer;
     padding: 0 6px;          /* padding più stretto */
@@ -190,4 +190,49 @@ body {
 /* Fix compatibilità CodePen */
 #game-container > div {
     width: 100%;
+}
+
+/* ✅ Ottimizzazione per telefoni e tablet */
+@media (max-width: 900px) {
+    /* riduce leggermente le caselle della griglia */
+    .box {
+        width: 48px;
+        height: 48px;
+        font-size: 1.6em;
+    }
+
+    /* abbassa la tastiera verso il basso e la compatta */
+    #keyboard-container {
+        margin-top: 20px;
+        padding-bottom: 40px;  /* spazio extra sotto */
+        gap: 6px;
+    }
+
+    .key {
+        height: 40px;
+        min-width: 34px;
+        font-size: 0.85em;
+        padding: 0 5px;
+    }
+}
+
+/* ✅ Modalità orizzontale su telefono */
+@media (max-height: 500px) and (orientation: landscape) {
+    .box {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4em;
+    }
+
+    #keyboard-container {
+        margin-top: 10px;
+        padding-bottom: 15px;
+    }
+
+    .key {
+        height: 34px;
+        min-width: 30px;
+        font-size: 0.75em;
+        padding: 0 4px;
+    }
 }
