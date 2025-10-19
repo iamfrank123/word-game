@@ -16,6 +16,7 @@ const languageSelect = document.getElementById('languageSelect');
 const soundWin = new Audio('audio/audio_win.mp3');
 const soundTurn = new Audio('audio/audio_turn.mp3');
 const soundGameOver = new Audio('audio/audio_gameover.mp3');
+const soundTick = new Audio('audio/tick.mp3'); // il tuo suono "tick"
 
 let gameStatusDiv = document.getElementById('game-status');
 let rematchBtn = null;
@@ -41,12 +42,18 @@ function startTurnTimer() {
         turnTime--;
         updateTimerDisplay();
 
+        // Suono a 15 secondi
+        if (turnTime === 15) {
+            soundTick.play();
+        }
+
         if (turnTime <= 0) {
             clearInterval(turnTimerId);
             timeUp();
         }
     }, 1000);
 }
+
 
 function updateTimerDisplay() {
     const timerDiv = document.getElementById('turn-timer');
