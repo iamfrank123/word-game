@@ -10,7 +10,7 @@ const gridContainer = document.getElementById('grid-container');
 const playerTurnH3 = document.getElementById('player-turn');
 const gameMessageP = document.getElementById('game-message');
 const keyboardContainer = document.getElementById('keyboard-container');
-const languageSelect = document.getElementById('languageSelect'); // NUOVO: select lingua
+const languageSelect = document.getElementById('languageSelect'); 
 
 // ------------------ SUONI ------------------
 const soundWin = new Audio('audio/audio_win.mp3');
@@ -27,6 +27,36 @@ let currentRowIndex = 0;
 const WORD_LENGTH = 5;
 let totalRows = 6;
 let keyStates = {};
+
+// ------------------ TIMER ------------------
+let turnTime = 30;
+let turnTimerId = null;
+
+function startTurnTimer() {
+    clearInterval(turnTimerId);
+    turnTime = 30;
+    updateTimerDisplay();
+
+    turnTimerId = setInterval(() => {
+        turnTime--;
+        updateTimerDisplay();
+
+        if (turnTime <= 0) {
+            clearInterval(turnTimerId);
+            timeUp();
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const timerDiv = document.getElementById('turn-timer');
+    if (timerDiv) timerDiv.textContent = `Time left: ${turnTime}s`;
+}
+
+function timeUp() {
+    gameMessageP.textContent = "Time's up! Passing turn...";
+    socket.emit('passTurn'); // server gestisce cambio turno
+}
 
 // ------------------ GRID ------------------
 
@@ -206,6 +236,7 @@ function resetGameInterface() {
         rematchBtn = null;
     }
 
+    clearInterval(turnTimerId);
     isMyTurn = false;
     currentGuess = '';
     currentRowIndex = 0;
@@ -222,7 +253,7 @@ function resetGameInterface() {
 
 // CREA STANZA CON LINGUA
 createRoomBtn.addEventListener('click', () => {
-    const selectedLanguage = languageSelect.value; // "it" o "en"
+    const selectedLanguage = languageSelect.value; 
     socket.emit('createRoom', selectedLanguage);
     lobbyMessage.textContent = 'Creating a room...';
     createRoomBtn.disabled = true;
@@ -275,7 +306,9 @@ socket.on('updateTurnStatus', (status) => {
 
     if (isMyTurn) {
         gameMessageP.textContent = "It's your turn! Insert your word.";
+        startTurnTimer(); // <-- qui parte il timer
     } else {
+        clearInterval(turnTimerId);
         gameMessageP.textContent = "Waiting for your opponent's turn.";
         currentGuess = '';
         const rowBoxes = document.getElementById(`row-${currentRowIndex}`)?.querySelectorAll('.box');
@@ -300,6 +333,7 @@ socket.on('updateGameState', (state) => {
 });
 
 socket.on('gameOver', (data) => {
+    clearInterval(turnTimerId);
     isMyTurn = false;
     playerTurnH3.textContent = `Game ended! WINNER: ${data.winner === socket.id ? "TU" : "AVVERSARIO"}`;
     gameMessageP.textContent = `The secret word was: ${data.secretWord}`;
@@ -326,6 +360,7 @@ socket.on('rematchStart', () => {
 });
 
 socket.on('opponentDisconnected', (message) => {
+    clearInterval(turnTimerId);
     isMyTurn = false;
     playerTurnH3.textContent = 'Game ended';
     gameMessageP.textContent = message;
