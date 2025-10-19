@@ -6,7 +6,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static(__dirname));
 
@@ -1245,4 +1245,5 @@ server.listen(PORT, () => {
     console.log(`Server Socket.io in ascolto sulla porta ${PORT}`);
     console.log(`Accessibile su http://localhost:${PORT}`);
 });
+
 
