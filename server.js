@@ -229,7 +229,7 @@ const VALID_WORDS_IT = ["ABACO", "ABATE", "ABATI", "ABBAI", "ABBIA", "ABELE", "A
     "ORLAI", "ORMAI", "ORNAI", "OSANO", "OSARE", "OSATA", "OSATE", "OSATI", "OSATO",
     "OSAVA", "OSAVI", "OSAVO", "OSCAR", "OSERA", "OSERO", "OSINO", "OSMIO", "OSSEO",
     "OSSIA", "OTITE", "OVAIA", "OVAIO", "OVALE", "OVALI", "OVEST", "OVILE", "OVILI",
-    "OVINO", "OVULO", "OVVIA", "OVVIO", "OZIAI", "OZINO", "OZONO",
+    "OVINO", "OVULO", "OVVIA", "OVVIO", "OZIAI", "OZINO", "OZONO", "BELLA", "BELLE",
     "PACCO", "PADRE", "PADRI", "PAESE", "PAESI", "PAGAI", "PAGGI", "PAGHE", "PAGHI",
     "PALCO", "PALIO", "PALLA", "PALLE", "PALMA", "PALME", "PALMO", "PALPA", "PALPI",
     "PALPO", "PAMPA", "PANCA", "PANCE", "PANDA", "PANNA", "PANNE", "PANNI", "PANNO",
@@ -341,7 +341,7 @@ const VALID_WORDS_IT = ["ABACO", "ABATE", "ABATI", "ABBAI", "ABBIA", "ABELE", "A
     "TORVO", "TOSAI", "TOSSE", "TOSSI", "TOSTA", "TOSTE", "TOSTI", "TOSTO", "TOTEM",
     "TOZZA", "TOZZE", "TOZZI", "TOZZO", "TRADI", "TRAMA", "TRAME", "TRAMI", "TRAMO",
     "TRAVE", "TRAVI", "TREMA", "TREMI", "TREMO", "TRENI", "TRENO", "TRITA", "TRITI",
-    "TRITO", "TROIA", "TRONI", "TRONO", "TROTA", "TROTE", "TROVA", "TROVI", "TROVO",
+    "TRITO", "TASSO", "TRONI", "TRONO", "TROTA", "TROTE", "TROVA", "TROVI", "TROVO",
     "TUBAI", "TUFFA", "TUFFI", "TUFFO", "TULLE", "TUONA", "TUONI", "TUONO", "TURAI",
     "TURBA", "TURBO", "TURCA", "TURCO", "TURNI", "TURNO", "TURPE", "TUTTA", "TUTTE",
     "TUTTI", "TUTTO",
@@ -369,11 +369,25 @@ const VALID_WORDS_IT = ["ABACO", "ABATE", "ABATI", "ABBAI", "ABBIA", "ABELE", "A
     "VOLGA", "VOLGE", "VOLGI", "VOLGO", "VOLLE", "VOLLI", "VOLPE", "VOLPI", "VOLSE",
     "VOLTA", "VOLTE", "VOLTI", "VOLTO", "VORRA", "VULVA", "VUOLE", "VUOTA", "VUOTE",
     "VUOTI", "VUOTO", "ZAINI", "ZAINO", "ZAIRE", "ZAMPA", "ZAMPE", "ZANNA", "ZANNE",
-    "ZAPPA", "ZAPPI",
+    "ZAPPA", "ZAPPI", 
     "ZAPPO", "ZEBRA", "ZEBRE", "ZECCA", "ZEPPA", "ZEPPE", "ZEPPI", "ZEPPO", "ZINCO",
     "ZITTA", "ZITTE", "ZITTI", "ZITTO", "ZOLFO", "ZOLLA", "ZOLLE", "ZOPPA", "ZOPPE",
     "ZOPPI", "ZOPPO", "ZUCCA", "ZUFFA", "ZUFFE", "ZUPPA", "ZUPPE", "ZUPPO",
-    "QATAR", "QUALE", "QUALI", "QUASI", "QUOTA", "QUOTE", "QUOTI", "QUOTO"]; // tutte le parole italiane valide
+    "QATAR", "QUALE", "QUALI", "QUASI", "QUOTA", "QUOTE", "QUOTI", "QUOTO",
+    "CUORE", "AMORE", "MONDO", "MUORE", "DONNA", "TEMPO", "LUOGO", "FELPA", 
+    "FORTE", "VENTO", "ACQUA", "LATTE", "PIANO", "PESCE", "AMICO", "FIORI", 
+    "PALLA", "NOTTE", "SEDIA", "TRENO", "BOSCO", "LETTO", "CUOCO", "PIZZA", 
+    "CIELO", "FANGO", "NUOVO", "BAGNO", "SOGNO", "PIENO", "VERDE", "LENTO", 
+    "PESCA", "VESPA", "TORRE", "MENTE", "VIGNA", "PORTA", "VISTO", "NERVO", 
+    "PESTO", "SFERA", "BANCA", "LASSO", "FETTA", "CANTO", "MORDE", "GIOCO", 
+    "RESTO", "NOTTI", "OLIVA", "CUORI", "TETTO", "AEREO", "SCALO", "PESCI", 
+    "LASER", "SENSO", "VINTO", "DOLCE", "FERRO", "TASTO", "MENSA", "PUNTO", 
+    "SCALA", "MARMO", "BOCCA", "BRANO", "DENTE", "LETTA", "BRAVO", "AMICA", 
+    "CARTA", "PARCO", "BANCO", "PANCA", "PERLA", "MONTE", "MAREA", "GATTO", 
+    "TENDA", "FIUME", "BRANO", "PIGNA", "BELLO", "CIGNO", "BORSA", "ARENA", 
+    "BRUCO", "FORSE", "CASCO", "CALDO", "CARNE", "BECCO", "STILE", "RULLO", 
+    "SPINA", "RAGNO", "BRUNO", "CONTO", "CREDO", "CREMA", "PARLO", "PENTO", 
+    "VOLTA" ]; // tutte le parole italiane valide
 
     
 const VALID_WORDS_EN = ["AAHED", "AALII", "AARGH", "ABACA", "ABACI", "ABACK", "ABAFT", "ABAKA", "ABAMP", "ABASE", "ABASH", "ABATE", "ABBAS", "ABBES", "ABBEY",
@@ -957,7 +971,16 @@ const VALID_WORDS_EN = ["AAHED", "AALII", "AARGH", "ABACA", "ABACI", "ABACK", "A
 "ZAMIA", "ZANZA", "ZAPPY", "ZARFS", "ZAXES", "ZAYIN", "ZAZEN", "ZEALS", "ZEBEC", "ZEBRA", "ZEBUS", "ZEINS", "ZERKS", "ZEROS", "ZESTS",
 "ZESTY", "ZETAS", "ZIBET", "ZILCH", "ZILLS", "ZINCS", "ZINCY", "ZINEB", "ZINES", "ZINGS", "ZINGY", "ZINKY", "ZIPPY", "ZIRAM", "ZITIS",
 "ZIZIT", "ZLOTE", "ZLOTY", "ZOEAE", "ZOEAL", "ZOEAS", "ZOMBI", "ZONAE", "ZONAL", "ZONED", "ZONER", "ZONES", "ZONKS", "ZOOEY", "ZOOID",
-"ZOOKS", "ZOOMS", "ZOONS", "ZOOTY", "ZORIL", "ZORIS", "ZOWIE", "ZYMES" ];   // tutte le parole inglesi valide
+"ZOOKS", "ZOOMS", "ZOONS", "ZOOTY", "ZORIL", "ZORIS", "ZOWIE", "ZYMES",
+"APPLE", "HOUSE", "HEART", "WORLD", "WATER", "MONEY", "LIGHT", "SWEET", 
+"BREAD", "PLANT", "MUSIC", "STONE", "SMILE", "RIVER", "TABLE", "CHAIR", 
+"SLEEP", "GAMES", "BRICK", "BRAVE", "PIZZA", "HOUSE", "FISHY", "BERRY", 
+"ALIVE", "FROST", "SUGAR", "BREAD", "TRAIN", "NIGHT", "PLANE", "SCOPE", 
+"GREEN", "PEACE", "FLOUR", "TOWER", "BEACH", "SPINE", "CANDY", "LEMON", 
+"BRAVE", "MONEY", "LIGHT", "NORTH", "SOUTH", "CUPPA", "STONE", "FENCE", 
+"BRICK", "BRAVE", "GHOST", "CLEAN", "BOOST", "PLANT", "BEACH", "MONEY", 
+"FRUIT", "CLOUD", "BREAD", "SWEET", "SUGAR", "TABLE", "RIVER", "TRAIN", 
+"HOUSE", "SMILE", "STONE" ];   // tutte le parole inglesi valide
 
 
 function getWordList(language) {
@@ -1063,11 +1086,18 @@ io.on('connection', (socket) => {
         if (socket.id !== room.currentTurnSocket) return socket.emit('gameError', "It's not your turn!");
         if (upperWord.length !== WORD_LENGTH) return socket.emit('gameError', `The word must be ${WORD_LENGTH} letters.`);
 
-        const validWords = getWordList(room.language);
-        if (!validWords.includes(upperWord)) {
-            socket.emit('gameError', 'Not a valid word!');
-            return;
-        }
+        function isValidWord(word, language) {
+    const upperWord = word.toUpperCase();
+    if (language === "it") return VALID_WORDS_IT.includes(upperWord);
+    if (language === "en") return VALID_WORDS_EN.includes(upperWord);
+    return false;
+}
+
+if (!isValidWord(upperWord, room.language)) {
+    socket.emit('gameError', 'Not a valid word!');
+    return;
+}
+
 
         const feedback = getFeedback(upperWord, room.secretWord);
         room.grid.push({ word: upperWord, feedback: feedback });
