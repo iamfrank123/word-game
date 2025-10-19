@@ -15,7 +15,33 @@ const MAX_PLAYERS = 2;
 const WORD_LENGTH = 5;
 
 // Liste di parole per le lingue
-const SECRET_WORDS_IT = ["AMORE", "MONDO", "CUORE", "DONNA", "TEMPO", "LUOGO", "FELPA", "FORTE", "VENTO", "ACQUA", "LATTE", "PIANO", "PESCE", "AMICO", "FIORI", "PALLA", "NOTTE", "SEDIA", "TRENO", "BOSCO", "LETTO", "CUOCO", "PIZZA", "CIELO", "FANGO", "NUOVO", "BAGNO", "SOGNO", "PIENO", "VERDE", "LENTO", "PESCA", "VESPA", "TORRE", "MENTE", "VIGNA", "PORTA", "VISTO", "NERVO", "PESTO", "SFERA", "BANCA", "LASSO", "FETTA", "CANTO", "MORDE", "GIOCO", "RESTO", "NOTTI", "OLIVA", "CUORI", "TETTO", "AEREO", "SCALO", "PESCI", "LASER", "SENSO", "VINTO", "DOLCE", "FERRO", "TASTO", "MENSA", "PUNTO", "SCALA", "MARMO", "BOCCA", "BRANO", "DENTE", "LETTA", "BRAVO", "AMICA", "CARTA", "PARCO", "BANCO", "PANCA", "PERLA", "MONTE", "MAREA", "GATTO", "TENDA", "FIUME", "BRANO", "PIGNA", "BELLO", "CIGNO", "BORSA", "ARENA", "BRUCO", "FORSE", "CASCO", "CALDO", "CARNE", "BECCO", "STILE", "RULLO", "SPINA", "RAGNO", "BRUNO", "CONTO", "CREDO", "CREMA", "PARLO", "PENTO", "VOLTA"];
+const SECRET_WORDS_IT = ["AMORE", "MONDO", "CUORE", "DONNA", "TEMPO", "LUOGO", "FELPA", "FORTE", 
+                         "VENTO", "ACQUA", "LATTE", "PIANO", "PESCE", "AMICO", "FIORI", "PALLA", 
+                         "NOTTE", "SEDIA", "TRENO", "BOSCO", "LETTO", "CUOCO", "PIZZA", "CIELO", 
+                         "FANGO", "NUOVO", "BAGNO", "SOGNO", "PIENO", "VERDE", "LENTO", "PESCA", 
+                         "VESPA", "TORRE", "MENTE", "VIGNA", "PORTA", "VISTO", "NERVO", "PESTO", 
+                         "SFERA", "BANCA", "LASSO", "FETTA", "CANTO", "MORDE", "GIOCO", "RESTO", 
+                         "NOTTI", "OLIVA", "CUORI", "TETTO", "AEREO", "SCALO", "PESCI", "LASER", 
+                         "SENSO", "VINTO", "DOLCE", "FERRO", "TASTO", "MENSA", "PUNTO", "SCALA", 
+                         "MARMO", "BOCCA", "BRANO", "DENTE", "LETTA", "BRAVO", "AMICA", "CARTA", 
+                         "PARCO", "BANCO", "PANCA", "PERLA", "MONTE", "MAREA", "GATTO", "TENDA", 
+                         "FIUME", "BRANO", "PIGNA", "BELLO", "CIGNO", "BORSA", "ARENA", "BRUCO", 
+                         "FORSE", "CASCO", "CALDO", "CARNE", "BECCO", "STILE", "RULLO", "SPINA", 
+                         "RAGNO", "BRUNO", "CONTO", "CREDO", "CREMA", "PARLO", "PENTO", "VOLTA",
+                         "ABBIA", "ACETO", "ADIRA", "AFOSA", "AGILE", "ALICE", "AMICO", "ANIMA", 
+                         "AORTA", "ARIDO", "ASILO", "AVARO", "BACIO", "BALZO", "BANCA", "BARCO", 
+                         "BELLO", "BEVVI", "BISSA", "BOLLA", "BORSA", "BOTTO", "BRUNO", "BURRO", 
+                         "CALDO", "CAMPO", "CANNA", "CANTO", "CARNE", "CARTA", "CASSE", "CASTO", 
+                         "CAVIA", "CELLA", "CERTO", "CHINA", "CIELO", "CINTO", "CIVET", "CLIMA", 
+                         "COCCO", "COLLE", "CORPO", "COSTA", "COTTO", "CREMA", "CRISI", "CUORE", 
+                         "DANZA", "DENTE", "DOLCE", "DONNA", "DOTTO", "DURTO", "EDEMA", "EMANA", 
+                         "ENTRA", "ESITO", "EVITA", "FANGO", "FARSA", "FERRO", "FISSA", "FIUME", 
+                         "FOLLA", "FORTE", "FRENO", "FUGGI", "FURBO", "GALLA", "GATTO", 
+                         "GIARA", "GIOIA", "GOBBO", "GRANO", "GRECO", "GUIDA", "HOBBY", "HOTEL", 
+                         "CANTO", "INDIO", "IRIDE", "ISOLA", "LARGO", "LATTA", "LEGNO", 
+                         "LETTO", "LIEVE", "LIRIO", "LODAI", "LORDA", "LOTTO", "LUNGO", "LUOGO", 
+                         "MADRE", "MAREE", "MORTE"];
+                         
 const SECRET_WORDS_EN = ["APPLE", "HOUSE", "HEART", "WORLD", "WATER", "MONEY", "LIGHT", "SWEET", "BREAD", "PLANT", "MUSIC", "STONE", "SMILE", "RIVER", "TABLE", "CHAIR", "SLEEP", "GAMES", "BRICK", "BRAVE", "PIZZA", "HOUSE", "FISHY", "BERRY", "ALIVE", "FROST", "SUGAR", "BREAD", "TRAIN", "NIGHT", "PLANE", "SCOPE", "GREEN", "PEACE", "FLOUR", "TOWER", "BEACH", "SPINE", "CANDY", "LEMON", "BRAVE", "MONEY", "LIGHT", "NORTH", "SOUTH", "CUPPA", "STONE", "FENCE", "BRICK", "BRAVE", "GHOST", "CLEAN", "BOOST", "PLANT", "BEACH", "MONEY", "FRUIT", "CLOUD", "BREAD", "SWEET", "SUGAR", "TABLE", "RIVER", "TRAIN", "HOUSE", "SMILE", "STONE"];
 
 const VALID_WORDS_IT = ["ABACO", "ABATE", "ABATI", "ABBAI", "ABBIA", "ABELE", "ABETE", "ABETI", "ABILE", "ABILI",
