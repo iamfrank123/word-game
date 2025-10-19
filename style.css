@@ -129,18 +129,38 @@ body {
 .key {
     background-color: #444;
     color: #fff;
-    height: 58px;
-    min-width: 43px;
+    height: 44px;            /* ridotta da 58px */
+    min-width: 36px;         /* ridotta da 43px */
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 4px;
-    font-size: 0.85em;
+    font-size: 0.75em;       /* testo leggermente più piccolo */
     font-weight: bold;
     cursor: pointer;
-    padding: 0 8px;
+    padding: 0 6px;          /* padding più stretto */
     transition: background-color 0.2s;
 }
+
+/* Adatta ulteriormente la tastiera ai telefoni in orizzontale */
+@media (max-height: 500px) and (orientation: landscape) {
+    .key {
+        height: 36px;
+        min-width: 30px;
+        font-size: 0.65em;
+        padding: 0 4px;
+    }
+
+    .keyboard-row {
+        gap: 4px; /* riduce spazio tra tasti */
+    }
+
+    #keyboard-container {
+        gap: 6px;
+        padding-bottom: 10px;
+    }
+}
+
 
 .key:active {
     background-color: #999;
