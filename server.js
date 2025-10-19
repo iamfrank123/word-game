@@ -40,11 +40,11 @@ const SECRET_WORDS_IT = ["AMORE", "MONDO", "CUORE", "DONNA", "TEMPO", "LUOGO", "
                          "GIARA", "GIOIA", "GOBBO", "GRANO", "GRECO", "GUIDA", "HOBBY", "HOTEL", 
                          "CANTO", "INDIO", "IRIDE", "ISOLA", "LARGO", "LATTA", "LEGNO", 
                          "LETTO", "LIEVE", "LIRIO", "LODAI", "LORDA", "LOTTO", "LUNGO", "LUOGO", 
-                         "MADRE", "MAREE", "MORTE"];
-                         
+                         "MADRE", "MAREE", "MORTE", "BALLA"];
+
 const SECRET_WORDS_EN = ["APPLE", "HOUSE", "HEART", "WORLD", "WATER", "MONEY", "LIGHT", "SWEET", "BREAD", "PLANT", "MUSIC", "STONE", "SMILE", "RIVER", "TABLE", "CHAIR", "SLEEP", "GAMES", "BRICK", "BRAVE", "PIZZA", "HOUSE", "FISHY", "BERRY", "ALIVE", "FROST", "SUGAR", "BREAD", "TRAIN", "NIGHT", "PLANE", "SCOPE", "GREEN", "PEACE", "FLOUR", "TOWER", "BEACH", "SPINE", "CANDY", "LEMON", "BRAVE", "MONEY", "LIGHT", "NORTH", "SOUTH", "CUPPA", "STONE", "FENCE", "BRICK", "BRAVE", "GHOST", "CLEAN", "BOOST", "PLANT", "BEACH", "MONEY", "FRUIT", "CLOUD", "BREAD", "SWEET", "SUGAR", "TABLE", "RIVER", "TRAIN", "HOUSE", "SMILE", "STONE"];
 
-const VALID_WORDS_IT = ["ABACO", "ABATE", "ABATI", "ABBAI", "ABBIA", "ABELE", "ABETE", "ABETI", "ABILE", "ABILI",
+const VALID_WORDS_IT = ["ABACO", "BALLA", "ABATE", "ABATI", "ABBAI", "ABBIA", "ABELE", "ABETE", "ABETI", "ABILE", "ABILI",
     "ABITA", "ABITI", "ABITO", "ABOLI", "ABUSA", "ABUSI", "ABUSO", "ACARO", "ACERO", "ACETI",
     "ACETO", "ACIDA", "ACIDE", "ACIDI", "ACIDO", "ACINO", "ACNUR", "ACQUA", "ACQUE", "ACUME",
     "ACUTA", "ACUTI", "ACUTO", "ADAGI", "ADAMO", "ADDIO", "ADIGE", "ADIRA", "ADIRE", "ADIRO",
@@ -285,7 +285,7 @@ const VALID_WORDS_IT = ["ABACO", "ABATE", "ABATI", "ABBAI", "ABBIA", "ABELE", "A
     "PROVE", "PROVI", "PROVO", "PRUDE", "PRUNO", "PUGNI", "PUGNO", "PULCE", "PULCI",
     "PULII", "PULSA", "PULSI", "PULSO", "PUNGE", "PUNGI", "PUNGO", "PUNSE", "PUNSI",
     "PUNTA", "PUNTE", "PUNTI", "PUNTO", "PUREA", "PURGA", "PURGO", "PUTTO", "PUZZA",
-    "PUZZI", "PUZZO",
+    "PUZZI", "PUZZO", 
     "RABAT", "RADAR", "RADIA", "RADIO", "RAFIA", "RAGGI", "RAGIA", "RAGNI", "RAGNO",
     "RALLY", "RAMAI", "RAMPA", "RAMPE", "RANCI", "RANDA", "RANGO", "RAPAI", "RAPII",
     "RASOI", "RASPA", "RASPI", "RASPO", "RASTA", "RATEO", "RATTI", "RATTO", "RAUCA",
