@@ -17,6 +17,8 @@ const soundWin = new Audio('audio/audio_win.mp3');
 const soundTurn = new Audio('audio/audio_turn.mp3');
 const soundGameOver = new Audio('audio/audio_gameover.mp3');
 const soundTick = new Audio('audio/tick.mp3'); // il tuo suono "tick"
+const soundMyTurn = new Audio('audio/myturn.mp3'); // suono "bell" soft
+
 
 let gameStatusDiv = document.getElementById('game-status');
 let rematchBtn = null;
@@ -313,7 +315,8 @@ socket.on('updateTurnStatus', (status) => {
 
     if (isMyTurn) {
         gameMessageP.textContent = "It's your turn! Insert your word.";
-        startTurnTimer(); // <-- qui parte il timer
+        soundMyTurn.play(); // suono solo sul tuo turno
+        startTurnTimer(); 
     } else {
         clearInterval(turnTimerId);
         gameMessageP.textContent = "Waiting for your opponent's turn.";
@@ -324,6 +327,7 @@ socket.on('updateTurnStatus', (status) => {
 
     updateCurrentRowVisual();
 });
+
 
 socket.on('updateGameState', (state) => {
     updateGridState(state.grid);
