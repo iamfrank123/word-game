@@ -30,20 +30,20 @@ let totalRows = 6;
 let keyStates = {};
 
 // ------------------ TIMER ------------------
-let turnTime = 30;
+let turnTime = 45;
 let turnTimerId = null;
 
 function startTurnTimer() {
     clearInterval(turnTimerId);
-    turnTime = 30;
+    turnTime = 45;
     updateTimerDisplay();
 
     turnTimerId = setInterval(() => {
         turnTime--;
         updateTimerDisplay();
 
-        // Suono a 15 secondi
-        if (turnTime === 15) {
+        // Suono a 8 secondi
+        if (turnTime === 8) {
             soundTick.play();
         }
 
