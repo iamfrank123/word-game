@@ -5,7 +5,11 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #000;
+    background-color: #000; /* fallback se l'immagine non carica */
+    background-image: url("immagini/sfondo.jpg"); /* sfondo del gioco */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #333;
     padding: 20px;
     margin: 0;
