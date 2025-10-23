@@ -40,7 +40,10 @@ const SECRET_WORDS_IT = ["AMORE", "MONDO", "CUORE", "DONNA", "TEMPO", "LUOGO", "
                          "GIARA", "GIOIA", "GOBBO", "GRANO", "GRECO", "GUIDA", "HOBBY", "HOTEL", 
                          "CANTO", "INDIO", "IRIDE", "ISOLA", "LARGO", "LATTA", "LEGNO", 
                          "LETTO", "LIEVE", "LIRIO", "LODAI", "LORDA", "LOTTO", "LUNGO", "LUOGO", 
-                         "MADRE", "MAREE", "MORTE", "BALLA"];
+                         "MADRE", "MAREE", "MORTE", "BALLA", "AGGIO", "AGLIO", "ACUTI", "AMARO",
+                         "ASCIA", "BAULE", "CALZE", "COTTO", "CALDO", "BENDE", "ADDIO", "ACETO",
+                         "COLPA", "CIECO", "CREMA", "CREME", "DORMO", "DENSO", "CORSE", "CLONI",
+                         "FORTE", "FRIGO", "FORZE", "FIORE", "ALGHE", "AGILE", "FALCO", "DIETA"];
 
 const SECRET_WORDS_EN = ["APPLE", "HOUSE", "HEART", "WORLD", "WATER", "MONEY", "LIGHT", "SWEET", "BREAD", "PLANT", "MUSIC", "STONE", "SMILE", "RIVER", "TABLE", "CHAIR", "SLEEP", "GAMES", "BRICK", "BRAVE", "PIZZA", "HOUSE", "FISHY", "BERRY", "ALIVE", "FROST", "SUGAR", "BREAD", "TRAIN", "NIGHT", "PLANE", "SCOPE", "GREEN", "PEACE", "FLOUR", "TOWER", "BEACH", "SPINE", "CANDY", "LEMON", "BRAVE", "MONEY", "LIGHT", "NORTH", "SOUTH", "CUPPA", "STONE", "FENCE", "BRICK", "BRAVE", "GHOST", "CLEAN", "BOOST", "PLANT", "BEACH", "MONEY", "FRUIT", "CLOUD", "BREAD", "SWEET", "SUGAR", "TABLE", "RIVER", "TRAIN", "HOUSE", "SMILE", "STONE"];
 
@@ -1245,5 +1248,4 @@ server.listen(PORT, () => {
     console.log(`Server Socket.io in ascolto sulla porta ${PORT}`);
     console.log(`Accessibile su http://localhost:${PORT}`);
 });
-
 
